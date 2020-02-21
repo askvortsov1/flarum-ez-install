@@ -1,0 +1,23 @@
+name: ZipRelease
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Zip Folder
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Move to skeleton directory
+      run: cd skeleton
+
+    - name: Install Composer dependencies
+      run: composer install
+
+    - name: Zip
+      run: zip -r release.zip .
+
+    - name: Release to Github
+      run: echo "Release"
