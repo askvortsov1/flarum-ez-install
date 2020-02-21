@@ -11,16 +11,15 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Create Release Folder
-      run: rsync -arv --exclude='.editorconfig/' --exclude='.gitattributes/' --exclude='.gitignore' . ./release
-      working-directory: skeleton
+      run: rsync -arv --exclude='.editorconfig/' --exclude='.gitattributes/' --exclude='.gitignore' ./skeleton ./release
 
     - name: Install Composer dependencies
       run: composer install
-      working-directory: skeleton/release
+      working-directory: release
 
     - name: Zip Release
       run: zip -r release.zip .
-      working-directory: skeleton/release
+      working-directory: release
 
     - name: Create Release
       id: create_release
@@ -40,6 +39,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./skeleton/release/release.zip
+        asset_path: ./release/release.zip
         asset_name: ${{ github.ref }}.zip
         asset_content_type: application/zip
