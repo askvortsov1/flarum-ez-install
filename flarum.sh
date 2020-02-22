@@ -1,7 +1,7 @@
 #!/bin/bash
 
-OVERRIDE_PATHS=("site.php" "index.php" "flarum" "assets" "storage" ".htaccess" ".nginx.conf")
-NON_OVERRIDE_PATHS=("config.php" "composer.json" "extend.php")
+OVERRIDE_PATHS=("site.php" "index.php" "flarum" "assets/" "storage/" ".htaccess" ".nginx.conf")
+NON_OVERRIDE_PATHS=("composer.json" "extend.php")
 
 interactive=1
 
@@ -36,7 +36,7 @@ compat()
 install()
 {
     for t in ${OVERRIDE_PATHS[@]}; do
-        mv -f ".tmp/flarum/$t" .
+        cp -rf ".tmp/flarum/$t" .
     done
     for t in ${NON_OVERRIDE_PATHS[@]}; do
         if [ ! -f "$t" ]; then
@@ -53,5 +53,3 @@ download
 compat
 install
 rm_tmp_dir
-
-
