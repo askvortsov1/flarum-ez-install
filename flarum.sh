@@ -36,7 +36,7 @@ compat()
 install()
 {
     for t in ${OVERRIDE_PATHS[@]}; do
-        mv ".tmp/flarum/$t" .
+        mv -f ".tmp/flarum/$t" .
     done
     for t in ${NON_OVERRIDE_PATHS[@]}; do
         if [ ! -f "$t" ]; then
