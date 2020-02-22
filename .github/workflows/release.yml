@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Create Release Folder
-      run: rsync -arv --exclude='.editorconfig/' --exclude='.gitattributes/' --exclude='.gitignore' ./skeleton/* ./release && ls -la ./release
+      run: rsync -arv --include ".*" --include "./skeleton/*" ./skeleton/* ./release && ls -la ./release
 
     - name: Install Composer dependencies
       run: composer install
