@@ -1,4 +1,4 @@
-## Flarum EZ-Install
+# Flarum Shared Hosting Proof of Concept
 
 This repo houses my exploration of making installing/updating the flarum skeleton easier for shared hosting users. Please note that this is highly experimential, and that support is not guarunteed.
 
