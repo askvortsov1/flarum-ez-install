@@ -18,7 +18,7 @@ rm_tmp_dir()
 
 download()
 {
-    curl -o .tmp/flarum.zip --remote-name --location https://github.com/askvortsov1/flarum-one-click/releases/latest/download/release-bazaar.zip
+    curl -o .tmp/flarum.zip --remote-name --location https://github.com/askvortsov1/flarum-one-click/releases/latest/download/release.zip
     unzip .tmp/flarum.zip -d .tmp/flarum
 }
 

@@ -17,16 +17,12 @@ jobs:
       run: composer install
       working-directory: release
 
-    - name: Zip Release
-      run: zip -r release.zip .
-      working-directory: release
-
-    - name: Require bazaar for bazaar version
+    - name: Require bazaar
       run: composer require extiverse/bazaar
       working-directory: release
 
     - name: Zip Release
-      run: zip -r release-bazaar.zip .
+      run: zip -r release.zip .
       working-directory: release
 
     - name: Create Release
@@ -46,6 +42,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./release/release-bazaar.zip
-        asset_name: release-bazaar.zip
+        asset_path: ./release/release.zip
+        asset_name: release.zip
         asset_content_type: application/zip
