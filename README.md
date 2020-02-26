@@ -19,6 +19,7 @@ This is geared towards users that don't necessarily have direct access to compos
 
 1. Go to your site's root directory
 2. Run `wget -O - https://raw.githubusercontent.com/askvortsov1/flarum-ez-install/master/flarum.sh | bash` in terminal
+3. If using NGINX (or another non-apache web server), make sure you add `import /INSERT/PATH/TO/FLARUM/.nginx.conf;` to your nginx's server directive.
 
 ## Feature Requests / Bugs / Feedback
 
