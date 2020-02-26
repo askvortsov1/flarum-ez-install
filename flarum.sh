@@ -9,6 +9,7 @@ interactive=1
 mk_tmp_dir()
 {
     mkdir .tmp
+    mkdir .tmp/flarum
 }
 
 rm_tmp_dir()
