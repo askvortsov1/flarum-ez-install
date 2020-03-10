@@ -14,7 +14,9 @@ mk_tmp_dir()
 
 rm_tmp_dir()
 {
-    rm -rf .tmp
+    if [[ -d ".tmp" ]]; then
+        rm -rf .tmp
+    fi
 }
 
 download()
@@ -58,9 +60,9 @@ install()
 
 # MAIN
 
+rm_tmp_dir
 mk_tmp_dir
 download
 compat
 disable_extensions
 install
-rm_tmp_dir
