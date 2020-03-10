@@ -12,10 +12,13 @@ mk_tmp_dir()
     mkdir .tmp/flarum
 }
 
-rm_tmp_dir()
+rm_temporary_dirs()
 {
     if [[ -d ".tmp" ]]; then
         rm -rf .tmp
+    fi
+    if [[ -d "utils" ]]; then
+        rm -rf utils
     fi
 }
 
@@ -39,9 +42,18 @@ compat()
 disable_extensions()
 {
     if [[ -f "config.php" ]] && [[ -d "vendor" ]]; then
-        mv '.tmp/flarum/extensionManager' .
+        mv '.tmp/flarum/utils/extensionManager' .
         php extensionManager
         rm extensionManager
+    fi
+}
+
+generate_new_installed_json()
+{
+    if [[ -f "config.php" ]] && [[ -d "vendor" ]]; then
+        mv '.tmp/flarum/utils/installedMerger' .
+        php installedMerger
+        rm installedMerger
     fi
 }
 
@@ -57,12 +69,22 @@ install()
     done
 }
 
+update_installed_json()
+{
+    if [[ -f ".tmp/installed.json" ]]; then
+        mv .tmp/installed.json vendor/composer/installed.json
+    fi
+}
+
 
 # MAIN
 
-rm_tmp_dir
+rm_temporary_dirs
 mk_tmp_dir
 download
 compat
 disable_extensions
+generate_new_installed_json
 install
+update_installed_json
+rm_temporary_dirs

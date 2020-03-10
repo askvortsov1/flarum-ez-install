@@ -1,0 +1,27 @@
+<?php
+
+$mergedJson = [];
+
+$newJson = json_decode(file_get_contents('.tmp/flarum/vendor/composer/installed.json'), true);
+
+$newInstalled = [];
+
+foreach ($newJson as $new) {
+    $mergedJson[] = $new;
+    $newInstalled[] = $new['name'];
+}
+
+$oldJson = json_decode(file_get_contents('vendor/composer/installed.json'), true);
+
+foreach ($oldJson as $old) {
+    if (in_array($old['name'], $newInstalled)) {
+        continue;
+    }
+    $mergedJson[] = $old;
+}
+
+usort($mergedJson, function ($a, $b) {
+    return strcmp($a['name'], $b['name']);
+});
+
+file_put_contents('.tmp/installed.json', json_encode($mergedJson));
