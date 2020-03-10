@@ -25,10 +25,10 @@ download()
 
 compat()
 {
-    if [ -f "public/assets" ]; then
+    if [[ -d "public/assets" ]]; then
         mv public/assets assets
     fi
-    if [ -f "bootstrap.php" ]; then
+    if [[ -f "bootstrap.php" ]]; then
         mv bootstrap.php extend.php
     fi
     rm -rf public
@@ -36,7 +36,7 @@ compat()
 
 disable_extensions()
 {
-    if [[ -f "config.php" && -f "vendor" ]]; then
+    if [[ -f "config.php" ]] && [[ -d "vendor" ]]; then
         mv '.tmp/flarum/extensionManager' .
         php extensionManager
         rm extensionManager
@@ -49,7 +49,7 @@ install()
         cp -rf ".tmp/flarum/$t" .
     done
     for t in ${NON_OVERRIDE_PATHS[@]}; do
-        if [ ! -f "$t" ]; then
+        if [[ ! -f "$t" ]] && [[ ! -d "$t" ]]; then
             mv ".tmp/flarum/$t" .
         fi
     done
