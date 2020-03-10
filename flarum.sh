@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OVERRIDE_PATHS=("site.php" "index.php" "flarum" "assets/" "storage/" ".htaccess" ".nginx.conf")
+OVERRIDE_PATHS=("site.php" "index.php" "flarum" "assets/" "vendor/" "storage/" ".htaccess" ".nginx.conf")
 NON_OVERRIDE_PATHS=("composer.json" "extend.php")
 
 interactive=1
