@@ -36,7 +36,7 @@ compat()
 
 disable_extensions()
 {
-    if [ -f "config.php" && -f "vendor" ]; then
+    if [[ -f "config.php" && -f "vendor" ]]; then
         mv '.tmp/flarum/extensionManager' .
         php extensionManager
         rm extensionManager
