@@ -34,6 +34,15 @@ compat()
     rm -rf public
 }
 
+disable_extensions()
+{
+    if [ -f "config.php" && -f "vendor" ]; then
+        mv '.tmp/flarum/extensionManager' .
+        php extensionManager
+        rm extensionManager
+    fi
+}
+
 install()
 {
     for t in ${OVERRIDE_PATHS[@]}; do
@@ -52,5 +61,6 @@ install()
 mk_tmp_dir
 download
 compat
+disable_extensions
 install
 rm_tmp_dir

@@ -1,0 +1,17 @@
+<?php
+
+use Illuminate\Database\Capsule\Manager;
+
+require_once 'vendor/autoload.php';
+
+$config = include 'config.php';
+
+$flarumDbPassword = $config['database']['password'] ? " -p{$config['database']['password']}" : '';
+
+$db = new Manager();
+$db->addConnection($config['database'], 'flarum');
+
+$db->getConnection('flarum')
+    ->table('settings')
+    ->where('key', 'extensions_enabled')
+    ->update(['value' => "[]"]);
